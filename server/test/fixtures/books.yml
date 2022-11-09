@@ -2,8 +2,22 @@
 
 one:
   title: MyString
-  body: MyText
+  synopsis: MyText
+  review: MyText
+  language: MyString
+  page_count: 1
+  release_date: 2022-11-09
+  genre: one
+  author: one
+  publisher: one
 
 two:
   title: MyString
-  body: MyText
+  synopsis: MyText
+  review: MyText
+  language: MyString
+  page_count: 1
+  release_date: 2022-11-09
+  genre: two
+  author: two
+  publisher: two
