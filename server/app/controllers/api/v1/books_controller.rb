@@ -3,7 +3,7 @@ class Api::V1::BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page])
 
     render json: @books
   end

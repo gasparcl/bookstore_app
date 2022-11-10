@@ -53,3 +53,7 @@ end
 # gem "devise-jwt", "~> 0.10.0"
 gem "faker"
 gem 'tty-spinner'
+
+# Pagination
+gem 'kaminari'
+gem 'kaminari-i18n'
