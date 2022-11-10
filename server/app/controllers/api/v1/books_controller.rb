@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class Api::V1::BooksController < ApplicationController
   before_action :set_book, only: %i[ show update destroy ]
 
   # GET /books
@@ -46,6 +46,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :synopsis, :review, :language, :page_count, :release_date, :genre_id, :author_id, :publisher_id)
+      params.require(:book).permit(:title, :synopsis, :review, :language, :page_count, :release_date, :genre_id, :author_id, :publisher_id, :isbn, :url_image)
     end
 end

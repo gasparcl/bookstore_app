@@ -9,7 +9,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # URL or IP address from the frontend client 
     # development:
-    origins "http://localhost:5173"
+    origins "*"
     # production:
     # origins "production URL or IP Address"
 
