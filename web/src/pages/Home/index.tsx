@@ -10,12 +10,13 @@ export default function Home() {
     // ╠═╣║ ║║ ║╠╩╗╚═╗
     // ╩ ╩╚═╝╚═╝╩ ╩╚═╝
     const [books, setBooks] = useState([])
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         const initilizeData = async () => {
             try {
                 const response = await api.get(apiEndPoints.books.root, {
-                    params: { page: 30 },
+                    params: { page: page },
                 })
                 const books = response.data
                 console.log(response)
