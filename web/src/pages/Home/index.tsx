@@ -5,7 +5,7 @@ import api from "../../services/api"
 
 import Books from "../../components/Books"
 
-export default function Home() {
+export default function HomePage() {
     // ╦ ╦╔═╗╔═╗╦╔═╔═╗
     // ╠═╣║ ║║ ║╠╩╗╚═╗
     // ╩ ╩╚═╝╚═╝╩ ╩╚═╝
@@ -18,8 +18,8 @@ export default function Home() {
                 const response = await api.get(apiEndPoints.books.root, {
                     params: { page: page },
                 })
-                const books = response.data
-                console.log(response)
+                const books = response.data.slice(0, 20)
+                // console.log(response)
                 setBooks(books)
             } catch (err) {
                 console.log(err)
@@ -28,7 +28,7 @@ export default function Home() {
         initilizeData()
     }, [])
 
-    console.log(books)
+    // console.log(books)
 
     return (
         <>

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import { styled, alpha } from "@mui/material/styles"
 import AppBar from "@mui/material/AppBar"
 import { useState } from "react"
@@ -60,7 +61,13 @@ export default function HeadDrawer() {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="sticky" className="px-10 py-6">
                     <Toolbar className="flex justify-between">
-                        <img src={logo} alt="logo" />
+                        <NavLink
+                            to="/"
+                            className="transition-all hover:scale-90"
+                        >
+                            <img src={logo} alt="logo" className="w-10/12" />
+                        </NavLink>
+
                         <div className="flex items-center gap-10">
                             <Search>
                                 <SearchIconWrapper>

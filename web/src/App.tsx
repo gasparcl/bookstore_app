@@ -1,12 +1,14 @@
+import { ThemeProvider } from "styled-components"
 import "./App.css"
-import HeadDrawer from "./components/HeadDrawer"
 import Routes from "./routes"
+import theme from "./theme/theme"
 
 function App() {
     return (
         <>
-            <HeadDrawer />
-            <Routes />
+            <ThemeProvider theme={theme}>
+                <Routes />
+            </ThemeProvider>
         </>
     )
 }
