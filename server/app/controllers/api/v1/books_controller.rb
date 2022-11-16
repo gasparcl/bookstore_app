@@ -1,16 +1,18 @@
-class Api::V1::BooksController < ApplicationController
+class Api::V1::BooksController < Api::ApiController
   include Paginable
   
   before_action :set_book, only: %i[ show update destroy ]
 
   # GET /books
   def index
-    books = Book.all
+    @books = Book.includes(:author, :genre, :publisher).page(params[:page]) 
+    @total_items = Book.all.count
 
-    paginated_books = paging(books, params[:pageSize], params[:page])
-    response.set_header('total',  paginated_books[:total])
+    response.set_header("total_items", @total_items.to_s)
 
-    render json: paginated_books[:records]
+    render(
+      json: @books
+    )
   end
 
   # GET /books/1

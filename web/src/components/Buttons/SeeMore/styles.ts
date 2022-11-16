@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const SeeMoreButton = styled.div`
     padding: 0.375rem 1rem;
     border-radius: 0.25rem;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     line-height: 1.25rem;
     transition: all 200ms;
     cursor: pointer;

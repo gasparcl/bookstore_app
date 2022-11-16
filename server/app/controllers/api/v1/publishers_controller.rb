@@ -1,4 +1,4 @@
-class Api::V1::PublishersController < ApplicationController
+class Api::V1::PublishersController < Api::ApiController
   before_action :set_publisher, only: %i[ show update destroy ]
 
   # GET /publishers

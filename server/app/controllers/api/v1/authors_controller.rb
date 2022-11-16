@@ -1,4 +1,4 @@
-class Api::V1::AuthorsController < ApplicationController
+class Api::V1::AuthorsController < Api::ApiController
   before_action :set_author, only: %i[ show update destroy ]
 
   # GET /authors

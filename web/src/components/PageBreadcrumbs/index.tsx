@@ -1,10 +1,23 @@
 import { useMemo } from "react"
-import { Link, useLocation } from "react-router-dom"
-
-import Typography from "@mui/material/Typography"
-import Breadcrumbs from "@mui/material/Breadcrumbs"
+import { useLocation } from "react-router-dom"
 
 import { BreadcrumbLinks, BreadcrumbsList } from "./styles"
+
+// ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
+// ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
+// ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
+const capitalizeString = (string: string) => {
+    if (string.length > 1) {
+        const splittedString = string.replace("/", "").split("")
+        splittedString[0] = splittedString[0].toUpperCase()
+
+        const capitilizedString = splittedString.join("")
+
+        return capitilizedString
+    }
+
+    return
+}
 
 export default function PageBreadcrumbs() {
     // ╦ ╦╔═╗╔═╗╦╔═╔═╗
@@ -12,26 +25,27 @@ export default function PageBreadcrumbs() {
     // ╩ ╩╚═╝╚═╝╩ ╩╚═╝
     const path = useLocation()
     let currentLocation = path.pathname
+    const displayLocation = capitalizeString(currentLocation)
 
     const breadcrumb = useMemo(() => {
         return (
-            <>
+            <div className="mb-8 mt-[-2rem]">
                 {currentLocation.length > 1 && (
                     <div role="presentation">
                         <BreadcrumbsList aria-label="breadcrumb">
-                            <BreadcrumbLinks to="/">HOME</BreadcrumbLinks>
+                            <BreadcrumbLinks to="/">Home</BreadcrumbLinks>
                             <BreadcrumbLinks
                                 className="disabled"
                                 to={currentLocation}
                             >
-                                {currentLocation.replace("/", "").toUpperCase()}
+                                {displayLocation}
                             </BreadcrumbLinks>
                         </BreadcrumbsList>
                     </div>
                 )}
-            </>
+            </div>
         )
-    }, [path])
+    }, [currentLocation])
 
     return breadcrumb
 }

@@ -48,10 +48,13 @@ group :development do
   # gem "spring"
 end
 
+# models Serialization
+gem 'active_model_serializers'
+
 # Authentication Gems 
 gem "devise"
 gem "devise-jwt"
-gem "fast_jsonapi"
+
 
 gem "faker"
 gem 'tty-spinner'

@@ -87,7 +87,7 @@ namespace :dev do
         page_count: Faker::Number.between(from: 25, to: 1000),
         release_date: Faker::Date.between(from: '1912-01-01', to: Date.today),
         isbn: Faker::Code.isbn,
-        url_image: "https://picsum.photos/seed/#{rand(0.0..9999.9)}/200/300",
+        url_image: "https://picsum.photos/seed/#{rand(0.0..9999.9)}/500/750",
         author: author,
         genre: genre,
         publisher: publisher

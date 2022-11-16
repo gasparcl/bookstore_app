@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
+
 import Box from "@mui/material/Box"
-import Drawer from "@mui/material/Drawer"
 import List from "@mui/material/List"
 import Divider from "@mui/material/Divider"
 import ListItem from "@mui/material/ListItem"
@@ -11,6 +11,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import Genre from "@mui/icons-material/LibraryBooks"
 import Author from "@mui/icons-material/PersonSearch"
 import Publisher from "@mui/icons-material/Villa"
+import { DrawerBox } from "../styles"
 interface Props {
     isOpen: boolean
     setIsOpen: (arg: boolean) => void
@@ -72,8 +73,12 @@ export default function OverlayDrawer({ isOpen, setIsOpen }: Props) {
     )
 
     return (
-        <Drawer anchor={"right"} open={isOpen} onClose={() => setIsOpen(false)}>
+        <DrawerBox
+            anchor={"right"}
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+        >
             {list()}
-        </Drawer>
+        </DrawerBox>
     )
 }

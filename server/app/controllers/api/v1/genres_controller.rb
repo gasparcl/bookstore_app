@@ -1,11 +1,15 @@
-class Api::V1::GenresController < ApplicationController
+class Api::V1::GenresController < Api::ApiController
   before_action :set_genre, only: %i[ show update destroy ]
 
   # GET /genres
   def index
-    @genres = Genre.all
+    @genres = Genre
+                .includes(:books)
+                .order(:description)
 
-    render json: @genres
+    render(
+      json: @genres,
+    )
   end
 
   # GET /genres/1

@@ -7,8 +7,8 @@ export default function SeeMore() {
         <div className="mt-2">
             <SeeMoreButton>
                 <span className="flex gap-2 items-center">
-                    <SeeMoreIcon fontSize="small" />
-                    More Details
+                    <SeeMoreIcon style={{ fontSize: "1rem" }} />
+                    More details
                 </span>
             </SeeMoreButton>
         </div>

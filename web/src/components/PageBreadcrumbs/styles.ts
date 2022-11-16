@@ -12,5 +12,6 @@ export const BreadcrumbsList = styled(Breadcrumbs)`
 export const BreadcrumbLinks = styled(Link)`
     &.disabled {
         pointer-events: none;
+        opacity: 0.85;
     }
 `
