@@ -13,6 +13,7 @@ export const colors = {
         primary: "rgba(25, 118, 210, 0.5)",
         hover: {
             background: "rgba(25, 118, 210, 0.25)",
+            lightenBg: "rgba(25, 118, 210, 0.15)",
             boxShadow: "0px 0px 10px 1px rgba(25, 118, 210, 0.5)",
         },
     },

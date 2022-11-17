@@ -6,7 +6,7 @@ export const PaginationContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 0.5rem;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     border-radius: 0.5rem;
 
     &.mobilePagination {
@@ -16,25 +16,30 @@ export const PaginationContainer = styled.div`
 
 export const StyledPagination = styled(Pagination)`
     .MuiPaginationItem-outlined {
-        border: 2px solid rgba(255, 255, 255, 0.87);
+        border: 1px solid ${(props) => props.theme.buttons.primary};
     }
 
     .MuiPaginationItem-root {
-        color: rgba(255, 255, 255, 0.87);
+        color: ${(props) => props.theme.primary};
     }
 
     .MuiPaginationItem-page:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: ${(props) => props.theme.buttons.hover.lightenBg};
+        box-shadow: ${(props) => props.theme.cards.hover.boxShadow};
     }
 
     .MuiPaginationItem-outlinedSecondary.Mui-selected {
-        color: rgba(196, 22, 28);
-        border: 1px solid rgba(196, 22, 28, 0.5);
-        background-color: rgba(196, 22, 28, 0.12);
+        color: ${(props) => props.theme.primary};
+        border: 1px solid ${(props) => props.theme.buttons.primary};
+        background-color: ${(props) => props.theme.buttons.hover.lightenBg};
     }
 
     .MuiPaginationItem-outlinedSecondary.Mui-selected:hover,
     .MuiPaginationItem-outlinedSecondary.Mui-selected.Mui-focusVisible {
-        background-color: rgba(196, 22, 28, 0.24);
+        background-color: ${(props) => props.theme.buttons.hover.background};
+    }
+
+    .css-1aczowp-MuiButtonBase-root-MuiPaginationItem-root:hover {
+        background-color: ${(props) => props.theme.buttons.hover.lightenBg};
     }
 `

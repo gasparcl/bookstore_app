@@ -7,7 +7,7 @@ interface Props {
 export default function SectionTitle({ description }: Props) {
     return (
         <>
-            <TitleSection className="borderBottom">{description}</TitleSection>
+            <TitleSection>{description}</TitleSection>
         </>
     )
 }

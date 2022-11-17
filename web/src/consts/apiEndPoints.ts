@@ -1,11 +1,19 @@
 export const apiEndPoints = {
-    // books
+    // Books
     books: {
         root: "books",
     },
-    // genres
+    // Genres
     genres: {
         root: "genres",
+    },
+    // Authors
+    authors: {
+        root: "authors",
+    },
+    // Publishers
+    publishers: {
+        root: "publishers",
     },
 }
 

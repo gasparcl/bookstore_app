@@ -15,13 +15,13 @@ export const TitleSection = styled.div`
 
     &:hover {
         text-shadow: ${(props) => props.theme.text.shadow};
-        transform: scale(1.01);
+        transform: scale(1.05);
     }
 
     &::before {
         display: block;
         content: "";
-        border-top: 2px solid rgba(255, 255, 255, 0.25);
+        border-top: 2px solid ${(props) => props.theme.buttons.hover.background};
         transform: scaleX(0);
         transform-origin: 100% 50%;
         transition: transform 250ms ease-in-out;
@@ -34,7 +34,8 @@ export const TitleSection = styled.div`
     &::after {
         display: block;
         content: "";
-        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+        border-bottom: 2px solid
+            ${(props) => props.theme.buttons.hover.background};
         transform: scaleX(0);
         transform-origin: 0% 50%;
         transition: transform 250ms ease-in-out;

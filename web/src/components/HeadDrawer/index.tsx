@@ -1,8 +1,7 @@
+import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { styled, alpha } from "@mui/material/styles"
 import AppBar from "@mui/material/AppBar"
-import { useState } from "react"
-import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import IconButton from "@mui/material/IconButton"
 import InputBase from "@mui/material/InputBase"
@@ -11,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search"
 
 import logo from "../../assets/bookCase_logo.png"
 import OverlayDrawer from "./OverlayDrawer"
+import { AppBarBox } from "./styles"
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -58,8 +58,8 @@ export default function HeadDrawer() {
     const [open, setOpen] = useState(false)
     return (
         <>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="sticky" className="px-10 py-6">
+            <AppBarBox sx={{ flexGrow: 1 }}>
+                <AppBar position="sticky" className="px-10 py-4">
                     <Toolbar className="flex justify-between">
                         <NavLink
                             to="/"
@@ -92,7 +92,7 @@ export default function HeadDrawer() {
                         </div>
                     </Toolbar>
                 </AppBar>
-            </Box>
+            </AppBarBox>
             <OverlayDrawer isOpen={open} setIsOpen={setOpen} />
         </>
     )
