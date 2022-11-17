@@ -15,7 +15,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
     resource "*",
       headers: :any,
-      expose: ["Authorization"],
+      expose: ["total_pages", "total_items", "Authorization"],
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
