@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import SeeMore from "../Buttons/SeeMore"
 import { BookCard, BookImage } from "./styles"
 
@@ -28,7 +29,9 @@ export default function BookCards({ book, isSlider }: bookProps) {
             <p className="font-bold mt-2 text-ellipsis text-center text-sm min-h-[40px]">
                 {book.title}
             </p>
-            <SeeMore />
+            <Link to={`books/${book.id}`}>
+                <SeeMore />
+            </Link>
         </BookCard>
     )
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const SeeMoreButton = styled.div`
+export const SeeMoreButton = styled.button`
     padding: 0.375rem 1rem;
     border-radius: 0.25rem;
     font-size: 0.75rem;
