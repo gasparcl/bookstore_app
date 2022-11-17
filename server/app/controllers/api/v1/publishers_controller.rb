@@ -1,9 +1,18 @@
 class Api::V1::PublishersController < Api::ApiController
   before_action :set_publisher, only: %i[ show update destroy ]
+  after_action  :set_pagination_header
+
+  # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
+  # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
+  # ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
+  DEFAULT_API_ITEMS_PER_PAGE = 10.00
 
   # GET /publishers
   def index
-    @publishers = Publisher.all
+    @publishers = Publisher
+                    .includes(:books)
+                    .order(:description)
+                    .page(params[:page])
 
     render json: @publishers
   end
@@ -47,5 +56,13 @@ class Api::V1::PublishersController < Api::ApiController
     # Only allow a list of trusted parameters through.
     def publisher_params
       params.require(:publisher).permit(:description)
+    end
+
+    def set_pagination_header
+      total_items = Publisher.all.count
+      total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+
+      response.set_header("total_items", total_items)
+      response.set_header("total_pages", total_pages)
     end
 end

@@ -1,11 +1,18 @@
 class Api::V1::GenresController < Api::ApiController
   before_action :set_genre, only: %i[ show update destroy ]
+  after_action  :set_pagination_header
 
+  # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
+  # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
+  # ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
+  DEFAULT_API_ITEMS_PER_PAGE = 10.00
+  
   # GET /genres
   def index
     @genres = Genre
                 .includes(:books)
                 .order(:description)
+                .page(params[:page])
 
     render(
       json: @genres,
@@ -51,5 +58,13 @@ class Api::V1::GenresController < Api::ApiController
     # Only allow a list of trusted parameters through.
     def genre_params
       params.require(:genre).permit(:description)
+    end
+
+    def set_pagination_header
+      total_items = Genre.all.count
+      total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+
+      response.set_header("total_items", total_items)
+      response.set_header("total_pages", total_pages)
     end
 end
