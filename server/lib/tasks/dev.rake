@@ -3,7 +3,7 @@ namespace :dev do
   # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗                   
   # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣                   
   # ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
-  LANGUAGES_ARR = ["Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Português", "Inglês", "Inglês", "Inglês", "Inglês", "Inglês", "Espanhol", "Espanhol", "Espanhol", "Espanhol", "Espanhol", "Francês", "Francês", "Francês", "Alemão", "Alemão", "Latim"]
+  LANGUAGES_ARR = ["Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "English", "English", "English", "English", "English", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "French", "French", "French", "German", "German", "Latim"]
   # ╔╦╗╔═╗╦╔╗╔  ╔╦╗╔═╗╔═╗╦╔═            
   # ║║║╠═╣║║║║   ║ ╠═╣╚═╗╠╩╗            
   # ╩ ╩╩ ╩╩╝╚╝   ╩ ╩ ╩╚═╝╩ ╩  
@@ -78,7 +78,9 @@ namespace :dev do
 
   def create_book_params(author = Author.all.sample,
                         genre = Genre.all.sample, 
-                        publisher = Publisher.all.sample)
+                        publisher = Publisher.all.sample,
+                        picsum_seed = rand(0.0..9999.9)
+                      )
     {
       book: {
         title: Faker::Book.title,
@@ -87,7 +89,8 @@ namespace :dev do
         page_count: Faker::Number.between(from: 25, to: 1000),
         release_date: Faker::Date.between(from: '1912-01-01', to: Date.today),
         isbn: Faker::Code.isbn,
-        url_image: "https://picsum.photos/seed/#{rand(0.0..9999.9)}/500/750",
+        url_image: "https://picsum.photos/seed/#{picsum_seed}/500/750",
+        banner_url: "https://picsum.photos/seed/#{picsum_seed}/1920/1080",
         author: author,
         genre: genre,
         publisher: publisher

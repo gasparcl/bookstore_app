@@ -6,7 +6,8 @@ class BookSerializer < ActiveModel::Serializer
               :page_count,
               :release_date,
               :isbn,
-              :url_image
+              :url_image,
+              :banner_url
 
   belongs_to :author
   belongs_to :publisher
