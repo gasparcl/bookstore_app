@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom"
+
+import { scrollTop } from "../../services/utils"
+import paths from "../../consts/paths"
+
 import SeeMore from "../Buttons/SeeMore"
 import { BookCard, BookImage } from "./styles"
 
@@ -7,16 +11,35 @@ export interface DataProps {
     title: string
     synopsis: string
     url_image: string
-    name?: string
-    description?: string
+    banner_url?: string
+    // name?: string
+    // description?: string
+    release_date?: string
+    page_count?: number
+    language?: string
+    isbn?: string
+    author?: {
+        id?: number
+        name?: string
+    }
+    genre?: {
+        id?: number
+        description?: string
+    }
+    publisher?: {
+        id?: number
+        description?: string
+    }
 }
 
-interface bookProps {
+export interface bookProps {
     book: DataProps
     isSlider?: boolean
 }
 
 export default function BookCards({ book, isSlider }: bookProps) {
+    const bookPath = paths.books.show.replace(":bookId", `${book.id}`)
+
     return (
         <BookCard
             className={`text-opacity-[0.87] ${
@@ -29,8 +52,8 @@ export default function BookCards({ book, isSlider }: bookProps) {
             <p className="font-bold mt-2 text-ellipsis text-center text-sm min-h-[40px]">
                 {book.title}
             </p>
-            <Link to={`books/${book.id}`}>
-                <SeeMore />
+            <Link to={bookPath}>
+                <SeeMore onClick={scrollTop} />
             </Link>
         </BookCard>
     )

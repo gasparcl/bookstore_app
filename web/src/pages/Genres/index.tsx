@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 import apiEndPoints from "../../consts/apiEndPoints"
 import api from "../../services/api"
+import { scrollTop } from "../../services/utils"
 
 import { DataProps } from "../../components/BookCard"
 import { PaginationProps } from "../../components/Books"
@@ -56,7 +57,10 @@ export default function GenresPage() {
     // ╠═╣╠═╣║║║ ║║║  ║╣ ╠╦╝╚═╗
     // ╩ ╩╩ ╩╝╚╝═╩╝╩═╝╚═╝╩╚═╚═╝
     const handleChangePage = (_: object, newPage: number) => {
-        if (page !== newPage) setPage(newPage)
+        if (page !== newPage) {
+            setPage(newPage)
+            scrollTop()
+        }
     }
 
     const hasPagination = paginationData?.total_pages > 1

@@ -9,8 +9,12 @@ export default function Routes() {
     return (
         <Router>
             <HeadDrawer />
-            <Box className="bg-default-main min-h-screen flex flex-1 flex-col overflow-hidden">
-                <Container maxWidth="xl" className="py-16">
+            <Box className="bg-default-main flex flex-1 flex-col">
+                <Container
+                    maxWidth="xl"
+                    className="py-16 h-full"
+                    style={{ minHeight: "calc(100vh - 96px)" }}
+                >
                     <PageBreadcrumbs />
                     <AppRoutes />
                 </Container>

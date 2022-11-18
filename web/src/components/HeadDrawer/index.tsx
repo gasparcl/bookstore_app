@@ -8,6 +8,8 @@ import InputBase from "@mui/material/InputBase"
 import MenuIcon from "@mui/icons-material/Menu"
 import SearchIcon from "@mui/icons-material/Search"
 
+import paths from "../../consts/paths"
+
 import logo from "../../assets/bookCase_logo.png"
 import OverlayDrawer from "./OverlayDrawer"
 import { AppBarBox } from "./styles"
@@ -62,7 +64,7 @@ export default function HeadDrawer() {
                 <AppBar position="sticky" className="px-10 py-4">
                     <Toolbar className="flex justify-between">
                         <NavLink
-                            to="/"
+                            to={paths.root}
                             className="transition-all hover:scale-90"
                         >
                             <img src={logo} alt="logo" className="w-10/12" />

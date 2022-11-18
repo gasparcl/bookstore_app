@@ -11,6 +11,9 @@ import HomeIcon from "@mui/icons-material/Home"
 import Genre from "@mui/icons-material/LibraryBooks"
 import Author from "@mui/icons-material/PersonSearch"
 import Publisher from "@mui/icons-material/Villa"
+
+import paths from "../../../consts/paths"
+
 import { DrawerBox } from "../styles"
 interface Props {
     isOpen: boolean
@@ -28,7 +31,7 @@ export default function OverlayDrawer({ isOpen, setIsOpen }: Props) {
             role="presentation"
         >
             <List>
-                <NavLink to="/">
+                <NavLink to={paths.root}>
                     <ListItem key="Home" disablePadding>
                         <ListItemButton onClick={() => setIsOpen(false)}>
                             <ListItemIcon>
@@ -45,10 +48,10 @@ export default function OverlayDrawer({ isOpen, setIsOpen }: Props) {
                     <NavLink
                         to={
                             index % 2 === 0 && index === 0
-                                ? "/genres"
+                                ? paths.genres.root
                                 : index % 2 !== 0
-                                ? "/authors"
-                                : "/publishers"
+                                ? paths.authors.root
+                                : paths.publishers.root
                         }
                         key={text}
                     >

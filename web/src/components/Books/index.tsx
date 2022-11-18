@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+
 import api from "../../services/api"
+import { scrollTop } from "../../services/utils"
 import BookCards, { DataProps } from "../BookCard"
 
 import Loader from "../Loader"
@@ -59,7 +61,10 @@ export default function Books({ url, data, ...props }: BooksProps) {
     // ╠═╣╠═╣║║║ ║║║  ║╣ ╠╦╝╚═╗
     // ╩ ╩╩ ╩╝╚╝═╩╝╩═╝╚═╝╩╚═╚═╝
     const handleChangePage = (_: object, newPage: number) => {
-        if (page !== newPage) setPage(newPage)
+        if (page !== newPage) {
+            setPage(newPage)
+            scrollTop()
+        }
     }
 
     const hasPagination = paginationData?.total_pages > 1
