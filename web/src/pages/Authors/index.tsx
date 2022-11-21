@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
+import paths from "../../consts/paths"
 import apiEndPoints from "../../consts/apiEndPoints"
 import api from "../../services/api"
 import { scrollTop } from "../../services/utils"
@@ -65,6 +67,7 @@ export default function AuthorsPage() {
     }
 
     const hasPagination = paginationData?.total_pages > 1
+    const hasAuthorDetails = (author: AuthorProps) => author.books.length > 4
 
     if (isLoading) return <Loader loaderText="Loading authors page..." />
 
@@ -77,7 +80,22 @@ export default function AuthorsPage() {
                             className="flex flex-col items-center px-20"
                             key={author.id}
                         >
-                            <SectionTitle description={author.name} />
+                            {hasAuthorDetails(author) ? (
+                                <Link
+                                    to={paths.authors.show.replace(
+                                        ":authorId",
+                                        `${author.id}`
+                                    )}
+                                >
+                                    <SectionTitle
+                                        description={author.name}
+                                        className="isLink"
+                                    />
+                                </Link>
+                            ) : (
+                                <SectionTitle description={author.name} />
+                            )}
+
                             {author.books.length > 4 ? (
                                 <Slider data={author.books} />
                             ) : (

@@ -2,6 +2,8 @@
  * Void Function to make current page scroll up
  */
 
+import { DataProps } from "../components/BookCard"
+
 const scrollTop = () => {
     let timeOut = <number | undefined>undefined
     timeOut = setTimeout(() => {
@@ -27,4 +29,18 @@ const capitalizeString = (string: string) => {
     return string
 }
 
-export { scrollTop, capitalizeString }
+/**
+ * Function to make pagination from array and slice it's items into groups of new arrays
+ *
+ */
+const paginateFromArr = (arr: Array<DataProps>, size: number) => {
+    return arr.reduce((acc, val, i) => {
+        let idx = Math.floor(i / size)
+        let page = acc[idx] || (acc[idx] = [])
+        page.push(val)
+
+        return acc
+    }, [])
+}
+
+export { scrollTop, capitalizeString, paginateFromArr }

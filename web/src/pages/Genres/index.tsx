@@ -10,6 +10,8 @@ import Loader from "../../components/Loader"
 import Pagination from "../../components/Pagination"
 import SectionTitle from "../../components/SectionTitle"
 import Slider from "../../components/Slider"
+import paths from "../../consts/paths"
+import { Link } from "react-router-dom"
 
 export interface GenreProps {
     id: number
@@ -77,7 +79,17 @@ export default function GenresPage() {
                                 className="flex flex-col items-center px-20"
                                 key={genre.id}
                             >
-                                <SectionTitle description={genre.description} />
+                                <Link
+                                    to={paths.genres.show.replace(
+                                        ":genreId",
+                                        `${genre.id}`
+                                    )}
+                                >
+                                    <SectionTitle
+                                        description={genre.description}
+                                        className="isLink"
+                                    />
+                                </Link>
                                 <Slider data={genre.books.slice(0, 15)} />
                             </div>
                         </>

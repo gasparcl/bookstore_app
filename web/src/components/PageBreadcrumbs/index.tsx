@@ -41,7 +41,7 @@ export default function PageBreadcrumbs() {
                                         : ""
                                 }
                             >
-                                {isArrLastIndex(i) ? item : `${item} / `}
+                                {isArrLastIndex(i) ? item : `${item}  /  `}
                             </BreadcrumbLinks>
                         )
                     })}

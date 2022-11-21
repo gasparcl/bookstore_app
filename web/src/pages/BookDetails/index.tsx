@@ -9,20 +9,20 @@ import { DataProps } from "../../components/BookCard"
 import BookBoxes from "../../components/BookBoxes"
 import Loader from "../../components/Loader"
 
-export default function BookDetails() {
-    // ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
-    // ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
-    // ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
-    const initialValues = {
-        id: 0,
-        title: "",
-        synopsis: "",
-        url_image: "",
-        banner_url: "",
-        name: "",
-        description: "",
-    }
+// ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
+// ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
+// ╩ ╩╚═╝ ╩ ╩ ╩═╩╝╩ ╩ ╩ ╩ ╩
+const initialValues = {
+    id: 0,
+    title: "",
+    synopsis: "",
+    url_image: "",
+    banner_url: "",
+    name: "",
+    description: "",
+}
 
+export default function BookDetails() {
     // ╦ ╦╔═╗╔═╗╦╔═╔═╗
     // ╠═╣║ ║║ ║╠╩╗╚═╗
     // ╩ ╩╚═╝╚═╝╩ ╩╚═╝

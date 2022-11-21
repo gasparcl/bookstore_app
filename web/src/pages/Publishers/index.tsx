@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
+import paths from "../../consts/paths"
 import apiEndPoints from "../../consts/apiEndPoints"
 import api from "../../services/api"
 import { scrollTop } from "../../services/utils"
@@ -64,6 +66,8 @@ export default function PublishersPage() {
     }
 
     const hasPagination = paginationData?.total_pages > 1
+    const hasPublisherDetails = (publisher: PublisherProps) =>
+        publisher.books.length > 4
 
     if (isLoading) return <Loader loaderText="Loading publishers page..." />
 
@@ -77,9 +81,23 @@ export default function PublishersPage() {
                                 className="flex flex-col items-center px-20"
                                 key={publisher.id}
                             >
-                                <SectionTitle
-                                    description={publisher.description}
-                                />
+                                {hasPublisherDetails(publisher) ? (
+                                    <Link
+                                        to={paths.publishers.show.replace(
+                                            ":publisherId",
+                                            `${publisher.id}`
+                                        )}
+                                    >
+                                        <SectionTitle
+                                            description={publisher.description}
+                                            className="isLink"
+                                        />
+                                    </Link>
+                                ) : (
+                                    <SectionTitle
+                                        description={publisher.description}
+                                    />
+                                )}
                                 <Slider data={publisher.books.slice(0, 15)} />
                             </div>
                         </>

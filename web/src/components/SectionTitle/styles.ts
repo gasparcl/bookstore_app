@@ -44,4 +44,8 @@ export const TitleSection = styled.div`
     &:hover::after {
         transform: scaleX(1);
     }
+
+    &.isLink {
+        cursor: pointer;
+    }
 `
