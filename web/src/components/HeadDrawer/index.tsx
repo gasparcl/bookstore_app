@@ -1,5 +1,7 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+
 import { styled, alpha } from "@mui/material/styles"
 import AppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
@@ -13,6 +15,10 @@ import paths from "../../consts/paths"
 import logo from "../../assets/bookCase_logo.png"
 import OverlayDrawer from "./OverlayDrawer"
 import { AppBarBox } from "./styles"
+import SearchField from "../SearchField"
+import usePagination from "../../hooks/usePagination"
+import api from "../../services/api"
+import apiEndPoints from "../../consts/apiEndPoints"
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -39,7 +45,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
     justifyContent: "center",
 }))
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(SearchField)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
         padding: theme.spacing(1, 1, 1, 0),
@@ -57,7 +63,60 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function HeadDrawer() {
+    // ╦ ╦╔═╗╔═╗╦╔═╔═╗
+    // ╠═╣║ ║║ ║╠╩╗╚═╗
+    // ╩ ╩╚═╝╚═╝╩ ╩╚═╝
+    const { state } = useLocation()
+    const navigate = useNavigate()
+
     const [open, setOpen] = useState(false)
+    const [searchBook, setSearchBook] = useState("")
+
+    // ╔═╗╔═╗╔═╗╦╔╗╔╔═╗╔╦╗╦╔═╗╔╗╔
+    // ╠═╝╠═╣║ ╦║║║║╠═╣ ║ ║║ ║║║║
+    // ╩  ╩ ╩╚═╝╩╝╚╝╩ ╩ ╩ ╩╚═╝╝╚╝
+    const {
+        page,
+        rowsPerPage,
+        onPageChange,
+        onRowsPerPageChange,
+        calculateOffset,
+        reset,
+    } = usePagination({
+        initialPage: state?.page,
+        initialRowsPerpage: state?.pageSize,
+    })
+
+    const { data, isFetching, refetch } = useQuery(
+        [
+            "books",
+            {
+                page,
+                rowsPerPage,
+                search: searchBook,
+            },
+        ],
+        async () => {
+            const params = {}
+            params.page = calculateOffset()
+            params.pageSize = rowsPerPage
+            params.filters = { title: searchBook }
+
+            const response = await api.get(apiEndPoints.books.root, { params })
+            const count = parseInt(response?.headers?.total_items)
+
+            const books = response.data
+
+            return { books, count }
+        },
+        {
+            staleTime: 0,
+            refetchOnWindowFocus: false,
+        }
+    )
+
+    console.log(data?.books)
+
     return (
         <>
             <AppBarBox sx={{ flexGrow: 1 }}>
@@ -77,7 +136,7 @@ export default function HeadDrawer() {
                                 </SearchIconWrapper>
                                 <StyledInputBase
                                     placeholder="Search…"
-                                    inputProps={{ "aria-label": "search" }}
+                                    onSearch={setSearchBook}
                                 />
                             </Search>
 
