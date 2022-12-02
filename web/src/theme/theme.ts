@@ -18,7 +18,10 @@ export const colors = {
         },
     },
     cards: {
-        background: "rgba(51, 65, 85, .1)",
+        background: {
+            primary: "#18191b",
+            translucent: "rgba(51, 65, 85, .25)",
+        },
         hover: {
             boxShadow: "0px 0px 2px 1px rgba(25, 118, 210, 0.5)",
         },

@@ -2,7 +2,10 @@
  * Void Function to make current page scroll up
  */
 
+import { toast } from "react-toastify"
 import { DataProps } from "../components/BookCard"
+import { IUser } from "../context/AuthProvider/types"
+import api, { authApi } from "./api"
 
 const scrollTop = () => {
     let timeOut = <number | undefined>undefined
@@ -33,7 +36,7 @@ const capitalizeString = (string: string) => {
  * Function to make pagination from array and slice it's items into groups of new arrays
  *
  */
-const paginateFromArr = (arr: Array<DataProps>, size: number) => {
+const paginateFromArr = (arr: DataProps[], size: number) => {
     return arr.reduce((acc, val, i) => {
         let idx = Math.floor(i / size)
         let page = acc[idx] || (acc[idx] = [])
@@ -43,4 +46,74 @@ const paginateFromArr = (arr: Array<DataProps>, size: number) => {
     }, [])
 }
 
-export { scrollTop, capitalizeString, paginateFromArr }
+/**
+ * Function to save user to localStorage - Authentication
+ *
+ */
+const setUserLocalStorage = (user: IUser | null) => {
+    const jsonUser = JSON.stringify(user)
+
+    // setted "u" as user key to obfuscate user info
+    localStorage.setItem("u", jsonUser)
+}
+
+/**
+ * Function to retrieve user from localStorage - Authentication
+ *
+ */
+const getUserLocalStorage = () => {
+    const jsonUser = localStorage.getItem("u")
+
+    if (!jsonUser) return null
+
+    const user = JSON.parse(jsonUser)
+    return user ?? null
+}
+
+/**
+ * Function to log in and log out users - Authentication
+ *
+ */
+const LoginRequest = async (email: string, password: string) => {
+    try {
+        const request = await authApi.post("users/sign_in", { email, password })
+        return request.data
+    } catch (e) {
+        console.log(e)
+        return null
+    }
+}
+
+/**
+ * Function to create account for new users - Authentication
+ *
+ */
+const SignupRequest = async (
+    email: string,
+    password: string,
+    passwordConfirmation: string
+) => {
+    try {
+        const request = await authApi.post("users", {
+            email,
+            password,
+            passwordConfirmation,
+        })
+        toast.success("Account created with success!")
+        return request.data
+    } catch (e) {
+        console.log(e)
+        toast.error("Something went wrong. Try again later...")
+        return null
+    }
+}
+
+export {
+    scrollTop,
+    capitalizeString,
+    paginateFromArr,
+    setUserLocalStorage,
+    getUserLocalStorage,
+    LoginRequest,
+    SignupRequest,
+}

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const SeeMoreButton = styled.button`
+export const Button = styled.button`
     padding: 0.375rem 1rem;
     border-radius: 0.25rem;
     font-size: 0.75rem;
@@ -13,5 +13,15 @@ export const SeeMoreButton = styled.button`
     &:hover {
         background: ${(props) => props.theme.buttons.hover.background};
         box-shadow: ${(props) => props.theme.buttons.hover.boxShadow};
+    }
+
+    &.sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.65rem;
+    }
+
+    &.lg {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
     }
 `

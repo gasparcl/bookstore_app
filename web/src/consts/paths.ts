@@ -5,6 +5,19 @@ export const paths = {
     //         return `${paths.root}/usuario/:id?`
     //     },
     // },
+    // AUTH
+    auth: {
+        login: {
+            get root() {
+                return `${paths.root}login`
+            },
+        },
+        signUp: {
+            get root() {
+                return `${paths.root}sign-up`
+            },
+        },
+    },
     // BOOKS
     books: {
         get root() {

@@ -46,7 +46,6 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }))
 
 const StyledInputBase = styled(SearchField)(({ theme }) => ({
-    color: "inherit",
     "& .MuiInputBase-input": {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -59,6 +58,16 @@ const StyledInputBase = styled(SearchField)(({ theme }) => ({
                 width: "20ch",
             },
         },
+    },
+    ".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+        borderColor: "rgba(255, 255, 255, 0.23)",
+    },
+    ".css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+        {
+            borderColor: "rgba(255, 255, 255, 0.23)",
+        },
+    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+        color: "rgba(255, 255, 255, 0.87)",
     },
 }))
 

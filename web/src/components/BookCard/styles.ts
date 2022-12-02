@@ -12,7 +12,7 @@ export const BookCard = styled.div`
     color: #fff;
     border-radius: 0.25rem;
     transition: all 250ms;
-    background-color: ${(props) => props.theme.cards.background};
+    background-color: ${(props) => props.theme.cards.background.primary};
     cursor: pointer;
 
     &:hover {

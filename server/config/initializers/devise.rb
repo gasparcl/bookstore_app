@@ -14,7 +14,11 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'dd8fbee182b89ac473c626b37dc2b19ed161560920d7ec7db698df80a558acb6762505a55919e7b9a3c43b252c69fc0e8771c1613e4ccfce5a33d44273a349d3'
+  # config.secret_key = '82a9b537516455de98c6003978e6fb8fafd64db0801576f7bee0d7deeb831d9a17d892be690ed2e2965909a3a38233eb779c2a814ed743c6c32a9994fd5f426a'
+
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+  end
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +28,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'gasparcl.dev@gmail.com'
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -126,7 +130,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '5030a23f93631584de83c01aafd23a6004fcdb5f1b388be386e60561090bff8a5db1807002687293206c20d2b00136baa9136c443edfa1c3ab927a9915b61b41'
+  # config.pepper = 'b214ffde652ff1aa3ec57258e0960c5c71bc8de0a3e12e7ca4d422882f1b7b1d021709236ee5f0daff66fe73a827301167d177fab40aa6a734c00d627e9f52b8'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,7 +267,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = []
+  # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -308,16 +312,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-
-  # DEVISE-JWT(JSON WEB TOKEN) - AUTHENTICATION CONFIG
-  config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
-    jwt.expiration_time = 60.minutes.to_i
-  end
 end

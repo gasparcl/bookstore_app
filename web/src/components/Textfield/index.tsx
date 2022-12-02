@@ -1,18 +1,15 @@
-import PropTypes from "prop-types"
 import { TextFieldProps } from "@mui/material/TextField"
 import TextMaskCustom from "../TextMaskCustom"
 import { StyledTextField } from "./styles"
 import { InputProps } from "@mui/material"
 import { mergeAll, mergeDeepWith } from "ramda"
 
-interface Props {
+interface Props extends InputProps {
     textMaskProps?:
         | {
               mask?: Array<string | any> | Function
           }
         | any
-    InputProps?: any
-    inputProps?: any
     value?: string
     onChange?: (e: any) => void
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const BookBox = styled.div`
-    background: ${(props) => props.theme.cards.background};
+    background: ${(props) => props.theme.cards.background.translucent};
     border-radius: 0.5rem;
     padding: 1.5rem 3.5rem;
     display: flex;
