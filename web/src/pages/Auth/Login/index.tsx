@@ -13,6 +13,7 @@ export default function Login() {
     const navigate = useNavigate()
 
     const handleLogin = async (e: any, email: string, password: string) => {
+        console.log(e.target)
         e.preventDefault()
 
         try {

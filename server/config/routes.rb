@@ -10,12 +10,17 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, 
-              controllers: {
-                sessions: "users/sessions",
-                registrations: "users/registrations"
-              }
-  get "/member-data", to: "members#show" 
+  # devise_for :users, 
+  #             controllers: {
+  #               sessions: "users/sessions",
+  #               registrations: "users/registrations"
+  #             }
+  # get "/member-data", to: "members#show"
+  
+  # Authentication
+  resources :users, param: :_username
+  post '/auth/login', to: 'authentication#login'
+  get '/*a', to: 'application#not_found'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

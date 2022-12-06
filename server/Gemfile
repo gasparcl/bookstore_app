@@ -52,8 +52,10 @@ end
 gem 'active_model_serializers'
 
 # Authentication Gems 
-gem "devise"
-gem "devise-jwt"
+# gem "devise"      
+# gem "devise-jwt"
+gem 'jwt'
+gem 'bcrypt'
 
 
 gem "faker"

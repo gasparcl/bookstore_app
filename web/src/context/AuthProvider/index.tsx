@@ -37,16 +37,19 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
     const createAccount = async (
         email: string,
+        username: string,
         password: string,
         passwordConfirmation: string
     ) => {
         const response = await SignupRequest(
             email,
+            username,
             password,
             passwordConfirmation
         )
         const payload = {
             token: response.token,
+            username,
             email,
             password,
             passwordConfirmation,

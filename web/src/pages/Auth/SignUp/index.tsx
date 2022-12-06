@@ -14,15 +14,22 @@ export default function SignUp() {
 
     const handleSignup = async (
         e: any,
-
-        email: string,
-        password: string,
-        passwordConfirmation: string
+        data: {
+            email: string
+            username: string
+            password: string
+            passwordConfirmation: string
+        }
     ) => {
         e.preventDefault()
 
         try {
-            await auth.createAccount(email, password, passwordConfirmation)
+            await auth.createAccount(
+                data.email,
+                data.username,
+                data.password,
+                data.passwordConfirmation
+            )
             navigate("/")
             toast.success("Logged in...")
         } catch (e) {
@@ -41,6 +48,7 @@ export default function SignUp() {
                     onSubmit={handleSignup}
                 >
                     <FormInput type="email" label="e-mail" name="email" />
+                    <FormInput type="text" label="username" name="username" />
                     <FormInput
                         type="password"
                         label="password"

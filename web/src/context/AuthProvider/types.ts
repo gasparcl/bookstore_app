@@ -7,6 +7,7 @@ export interface IContext extends IUser {
     authenticate: (email: string, password: string) => Promise<void>
     createAccount: (
         email: string,
+        username: string,
         password: string,
         passwordConfirmation: string
     ) => Promise<void>

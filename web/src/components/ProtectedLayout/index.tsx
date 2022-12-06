@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import paths from "../../consts/paths"
 import { useAuth } from "../../hooks/useAuth"
 import Button from "../Buttons/Button"
 
@@ -21,11 +22,11 @@ export default function ProtectedLayout({
                         <p className="text-sm">Log in or Create your account</p>
                     </div>
                     <div className="flex gap-2 text-sm items-center justify-center mb-8">
-                        <Link to="/login">
+                        <Link to={paths.auth.login.root}>
                             <Button className="sm" label="Sign in" />
                         </Link>
                         or
-                        <Link to="/sign-up">
+                        <Link to={paths.auth.signUp.root}>
                             <Button className="sm" label="Sign up" />
                         </Link>
                     </div>

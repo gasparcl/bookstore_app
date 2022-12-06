@@ -1,5 +1,5 @@
 export const paths = {
-    root: "/",
+    root: "",
     // profile: {
     //     get root() {
     //         return `${paths.root}/usuario/:id?`
@@ -9,19 +9,19 @@ export const paths = {
     auth: {
         login: {
             get root() {
-                return `${paths.root}login`
+                return `${paths.root}/login`
             },
         },
         signUp: {
             get root() {
-                return `${paths.root}sign-up`
+                return `${paths.root}/sign-up`
             },
         },
     },
     // BOOKS
     books: {
         get root() {
-            return `${paths.root}books`
+            return `${paths.root}/books`
         },
         get show() {
             return `${this.root}/:bookId`
@@ -30,7 +30,7 @@ export const paths = {
     // AUTHORS
     authors: {
         get root() {
-            return `${paths.root}authors`
+            return `${paths.root}/authors`
         },
         get show() {
             return `${this.root}/:authorId`
@@ -39,7 +39,7 @@ export const paths = {
     // GENRES
     genres: {
         get root() {
-            return `${paths.root}genres`
+            return `${paths.root}/genres`
         },
         get show() {
             return `${this.root}/:genreId`
@@ -48,7 +48,7 @@ export const paths = {
     // PUBLISHERS
     publishers: {
         get root() {
-            return `${paths.root}publishers`
+            return `${paths.root}/publishers`
         },
         get show() {
             return `${this.root}/:publisherId`

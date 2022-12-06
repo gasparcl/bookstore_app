@@ -39,7 +39,9 @@ const capitalizeString = (string: string) => {
 const paginateFromArr = (arr: DataProps[], size: number) => {
     return arr.reduce((acc, val, i) => {
         let idx = Math.floor(i / size)
+        //@ts-ignore
         let page = acc[idx] || (acc[idx] = [])
+        //@ts-ignore
         page.push(val)
 
         return acc
@@ -76,7 +78,7 @@ const getUserLocalStorage = () => {
  */
 const LoginRequest = async (email: string, password: string) => {
     try {
-        const request = await authApi.post("users/sign_in", { email, password })
+        const request = await authApi.post("auth/login", { email, password })
         return request.data
     } catch (e) {
         console.log(e)
@@ -90,17 +92,22 @@ const LoginRequest = async (email: string, password: string) => {
  */
 const SignupRequest = async (
     email: string,
+    username: string,
     password: string,
     passwordConfirmation: string
 ) => {
     try {
-        const request = await authApi.post("users", {
-            email,
-            password,
-            passwordConfirmation,
-        })
-        toast.success("Account created with success!")
-        return request.data
+        if (password === passwordConfirmation) {
+            const request = await authApi.post("users", {
+                email,
+                username,
+                password,
+                passwordConfirmation,
+            })
+            toast.success("Account created with success!")
+            return request.data
+        } else
+            toast.error("Password and password confirmation must be identical")
     } catch (e) {
         console.log(e)
         toast.error("Something went wrong. Try again later...")
