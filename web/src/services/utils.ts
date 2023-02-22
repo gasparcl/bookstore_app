@@ -5,7 +5,7 @@
 import { toast } from "react-toastify"
 import { DataProps } from "../components/BookCard"
 import { IUser } from "../context/AuthProvider/types"
-import api, { authApi } from "./api"
+import api from "./api"
 
 const scrollTop = () => {
     let timeOut = <number | undefined>undefined
@@ -78,7 +78,7 @@ const getUserLocalStorage = () => {
  */
 const LoginRequest = async (email: string, password: string) => {
     try {
-        const request = await authApi.post("auth/login", { email, password })
+        const request = await api.post("session", { email, password })
         return request.data
     } catch (e) {
         console.log(e)
@@ -98,7 +98,7 @@ const SignupRequest = async (
 ) => {
     try {
         if (password === passwordConfirmation) {
-            const request = await authApi.post("users", {
+            const request = await api.post("users", {
                 email,
                 username,
                 password,

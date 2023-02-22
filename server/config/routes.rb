@@ -1,31 +1,24 @@
 Rails.application.routes.draw do
-  get 'private/test'
-  get '/current_user', to: 'current_user#index'
+
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   namespace :api do
     namespace :v1 do
       resources :publishers
       resources :authors
       resources :genres
       resources :books
+
+      # Authentication
+      post "/session", to: "authentication#login"
+
+      resources :users, param: :_username
     end
   end
 
-  # devise_for :users, 
-  #             controllers: {
-  #               sessions: "users/sessions",
-  #               registrations: "users/registrations"
-  #             }
-  # get "/member-data", to: "members#show"
-  
-  # Authentication
-  resources :users, param: :_username
-  post '/auth/login', to: 'authentication#login'
-  get '/*a', to: 'application#not_found'
-
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "/*a", to: "application#not_found"
 
   # Defines the root path route ("/")
   # root "books#index"
-  get "/books", to: redirect("/")  
+  get "/books", to: redirect("/")
 end

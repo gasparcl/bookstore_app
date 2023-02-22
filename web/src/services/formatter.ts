@@ -1,4 +1,4 @@
-import { conformToMask } from "react-text-mask"
+// import { conformToMask } from "react-text-mask"
 // import { cnpj, cpf, telefoneCelular, telefoneFixo, cep } from "../consts/regexp"
 // import { unmask } from "../services/masks"
 

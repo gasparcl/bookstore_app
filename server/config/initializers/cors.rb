@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # URL or IP address from the frontend client 
+    # URL or IP address from the frontend client
     # development:
     origins "*"
     # production:
@@ -16,6 +16,6 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource "*",
       headers: :any,
       expose: ["total_pages", "total_items", "Authorization"],
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: :any
   end
 end
