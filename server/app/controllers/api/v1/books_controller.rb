@@ -1,8 +1,8 @@
-class Api::V1::BooksController < Api::ApiController
+class Api::V1::BooksController < ApplicationController
   include Paginable
-  
+
   before_action :set_book, only: %i[ show update destroy ]
-  after_action  :set_pagination_header
+  after_action :set_pagination_header
 
   # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
   # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
@@ -11,10 +11,10 @@ class Api::V1::BooksController < Api::ApiController
 
   # GET /books
   def index
-    @books = Book.includes(:author, :genre, :publisher).page(params[:page]) 
-    
+    @books = Book.includes(:author, :genre, :publisher).page(params[:page])
+
     render(
-      json: @books
+      json: @books,
     )
   end
 
@@ -49,22 +49,22 @@ class Api::V1::BooksController < Api::ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:title, :synopsis, :review, :language, :page_count, :release_date, :genre_id, :author_id, :publisher_id, :isbn, :url_image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
-    def set_pagination_header
-      total_items = Book.all.count
-      total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+  # Only allow a list of trusted parameters through.
+  def book_params
+    params.require(:book).permit(:title, :synopsis, :review, :language, :page_count, :release_date, :genre_id, :author_id, :publisher_id, :isbn, :url_image)
+  end
 
-      response.set_header("total_items", total_items)
-      response.set_header("total_pages", total_pages)
-    end
+  def set_pagination_header
+    total_items = Book.all.count
+    total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
 
+    response.set_header("total_items", total_items)
+    response.set_header("total_pages", total_pages)
+  end
 end

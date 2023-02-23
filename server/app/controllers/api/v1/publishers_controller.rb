@@ -1,6 +1,6 @@
-class Api::V1::PublishersController < Api::ApiController
+class Api::V1::PublishersController < ApplicationController
   before_action :set_publisher, only: %i[ show update destroy ]
-  after_action  :set_pagination_header
+  after_action :set_pagination_header
 
   # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
   # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
@@ -10,9 +10,9 @@ class Api::V1::PublishersController < Api::ApiController
   # GET /publishers
   def index
     @publishers = Publisher
-                    .includes(:books)
-                    .order(:description)
-                    .page(params[:page])
+      .includes(:books)
+      .order(:description)
+      .page(params[:page])
 
     render json: @publishers
   end
@@ -48,21 +48,22 @@ class Api::V1::PublishersController < Api::ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_publisher
-      @publisher = Publisher.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def publisher_params
-      params.require(:publisher).permit(:description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_publisher
+    @publisher = Publisher.find(params[:id])
+  end
 
-    def set_pagination_header
-      total_items = Publisher.all.count
-      total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+  # Only allow a list of trusted parameters through.
+  def publisher_params
+    params.require(:publisher).permit(:description)
+  end
 
-      response.set_header("total_items", total_items)
-      response.set_header("total_pages", total_pages)
-    end
+  def set_pagination_header
+    total_items = Publisher.all.count
+    total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+
+    response.set_header("total_items", total_items)
+    response.set_header("total_pages", total_pages)
+  end
 end

@@ -1,6 +1,6 @@
-class Api::V1::AuthorsController < Api::ApiController
+class Api::V1::AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show update destroy ]
-  after_action  :set_pagination_header
+  after_action :set_pagination_header
 
   # ╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗╔╦╗╔═╗
   # ║║║║╣  ║ ╠═╣ ║║╠═╣ ║ ╠═╣
@@ -10,9 +10,9 @@ class Api::V1::AuthorsController < Api::ApiController
   # GET /authors
   def index
     @authors = Author
-                  .includes(:books)
-                  .order(:name)
-                  .page(params[:page])
+      .includes(:books)
+      .order(:name)
+      .page(params[:page])
 
     render json: @authors
   end
@@ -48,21 +48,22 @@ class Api::V1::AuthorsController < Api::ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_author
-      @author = Author.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def author_params
-      params.require(:author).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_author
+    @author = Author.find(params[:id])
+  end
 
-    def set_pagination_header
-      total_items = Author.all.count
-      total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+  # Only allow a list of trusted parameters through.
+  def author_params
+    params.require(:author).permit(:name)
+  end
 
-      response.set_header("total_items", total_items)
-      response.set_header("total_pages", total_pages)
-    end
+  def set_pagination_header
+    total_items = Author.all.count
+    total_pages = (total_items / DEFAULT_API_ITEMS_PER_PAGE).ceil
+
+    response.set_header("total_items", total_items)
+    response.set_header("total_pages", total_pages)
+  end
 end
